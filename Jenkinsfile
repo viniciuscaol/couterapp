@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    dokerapp = docker.build("viniciuscaol/counterapp:V1.${env.BUILD_ID}", '-f ./Dockerfile .')
+                    dokerapp = docker.build("viniciuscaol/counterapp:V1.${env.BUILD_ID}", '-f /var/jenkins_home/workspace/counterapp@tmp/Dockerfile .')
                 }
             }
         }
