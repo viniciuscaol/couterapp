@@ -1,10 +1,10 @@
 pipeline {
-    agent amy
+    agent any
 
-    stages {
-        stage('Teste') {
+    stages{
+        stage('Checkout Source') {
             steps {
-                echo 'Teste'
+                git url:'https://github.com/viniciuscaol/couterapp.git', branch:'main'
             }
         }
     }
