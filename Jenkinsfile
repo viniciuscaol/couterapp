@@ -8,24 +8,24 @@ pipeline {
             }
         }
 
-        stage('Build Image') {
-            steps {
-                script {
-                    dokerapp = docker.build("viniciuscaol/counterapp:V1.${env.BUILD_ID}", '-f /var/jenkins_home/workspace/counterapp@tmp/Dockerfile .')
-                }
-            }
-        }
+        // stage('Build Image') {
+        //     steps {
+        //         script {
+        //             dokerapp = docker.build("viniciuscaol/counterapp:V1.${env.BUILD_ID}", '-f /var/jenkins_home/workspace/counterapp@tmp/Dockerfile .')
+        //         }
+        //     }
+        // }
 
-        stage('Push Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                        dockerapp.push('latest')
-                        dockerapp.push("V1.${env.BUILD_ID}")
-                    }
-                }
-            }
-        }
+        // stage('Push Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+        //                 dockerapp.push('latest')
+        //                 dockerapp.push("V1.${env.BUILD_ID}")
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Deploy') {
             steps {
