@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counterapp
+spec:
+  selector:
+    matchLabels:
+      app: counterapp
+  template:
+    metadata:
+      labels:
+        app: counterapp
+    spec:
+      containers:
+      - name: counterapp
+        image: viniciuscaol/counterapp:v2
+        ports:
+        - containerPort: 80
