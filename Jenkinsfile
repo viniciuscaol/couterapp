@@ -7,5 +7,25 @@ pipeline {
                 git url:'https://github.com/viniciuscaol/couterapp.git', branch:'main'
             }
         }
+
+        stage('Build Image') {
+            steps {
+                script {
+                    dokerapp = docker.build("viniciuscaol/counterapp:${env.BUILD_ID}",
+                    '-f ./Dockerfile .')
+                }
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://hub.docker.com/', 'dockerhub') {
+                    dockerapp.push('latest')
+                    dockerapp.push("${env.BUILD_ID}")
+                    }
+                }
+            }
+        }
     }
 }
