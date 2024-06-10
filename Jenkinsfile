@@ -11,8 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    dokerapp = docker.build("viniciuscaol/counterapp:${env.BUILD_ID}",
-                    '-f ./Dockerfile .')
+                    dokerapp = docker.build("viniciuscaol/counterapp:V1.${env.BUILD_ID}", '-f ./Dockerfile .')
                 }
             }
         }
@@ -20,9 +19,9 @@ pipeline {
         stage('Push Image') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/', 'dockerhub') {
-                    dockerapp.push('latest')
-                    dockerapp.push("${env.BUILD_ID}")
+                    docker.withRegistry('https://registry.hub.docker.com', "dockerhub") {
+                        dockerapp.push('latest')
+                        dockerapp.push("V1.${env.BUILD_ID}")
                     }
                 }
             }
