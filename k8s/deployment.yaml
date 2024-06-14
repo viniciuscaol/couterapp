@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: counterapp
-        image: viniciuscaol/counterapp:V.1.{{TAG}}
+        image: viniciuscaol/counterapp:V1.{{TAG}}
         ports:
         - containerPort: 80
